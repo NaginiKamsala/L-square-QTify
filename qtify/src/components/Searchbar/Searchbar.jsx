@@ -24,7 +24,7 @@ const Searchbar = (searchText) => {
         name="search"
         id="search"
         className={styles.search}
-        placeholder="Search your favourite album"
+        placeholder="Search a album of your choice"
       />
       <button className={styles.searchButton} onClick={handleSearch}>
         <SearchIcon />

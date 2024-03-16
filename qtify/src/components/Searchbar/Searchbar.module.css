@@ -1,0 +1,23 @@
+.searchbar {
+  width: 30vw;
+  display: flex;
+  border: 1px solid var(--color-black);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.search {
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+  border-right: 1px solid #000;
+}
+
+.searchButton {
+  width: 50px;
+  height: 50px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

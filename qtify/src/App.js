@@ -1,16 +1,13 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Navbar from "./components/Navbar/Navbar";
-import "./components/Navbar/Navbar.module.css";
-import { StyledEngineProvider } from "@mui/material/styles";
+import Home from "./pages/home/Home";
+
 function App() {
   return (
     <div>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Navbar />} />
-        </Routes>
-      </Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
     </div>
   );
 }

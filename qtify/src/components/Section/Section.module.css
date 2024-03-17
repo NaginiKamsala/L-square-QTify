@@ -1,0 +1,26 @@
+.title {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+  padding: 1rem;
+
+  .btnCollapse {
+    color: var(--color-primary);
+    background-color: var(--color-black);
+
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+.section {
+  background-color: var(--color-black);
+  margin: auto;
+  padding: 5rem;
+  padding-top: 0;
+}

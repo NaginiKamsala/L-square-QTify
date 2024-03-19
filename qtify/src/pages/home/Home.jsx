@@ -9,7 +9,8 @@ function Home() {
       <Navbar />
       <HeroSection />
 
-      <Section />
+      <Section type={"top"} title="Top" />
+      <Section type={"new"} title="New" />
     </div>
   );
 }

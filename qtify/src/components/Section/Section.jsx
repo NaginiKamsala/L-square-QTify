@@ -41,7 +41,7 @@ const Section = ({ type, title }) => {
           className={styles.btnCollapse}
           onClick={() => setCorouselToggle(!CorouselToggle)}
         >
-          {!CorouselToggle ? "show all" : "Collapse"}
+          {!CorouselToggle ? "Show all" : "Collapse"}
         </button>
       </div>
 

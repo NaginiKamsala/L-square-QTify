@@ -1,0 +1,8 @@
+.leftNavigation {
+  position: absolute;
+  top: 43%;
+  z-index: 10;
+  left: -1%;
+  background-color: transparent;
+  border: none;
+}

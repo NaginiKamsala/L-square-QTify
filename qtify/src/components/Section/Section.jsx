@@ -6,9 +6,10 @@ import { CircularProgress } from "@mui/material";
 import Card from "../Card/Card";
 
 // import Swiper core and required modules
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import { Navigation, Controller } from "swiper/modules";
 // import Swiper JS
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
+
 // import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
@@ -16,6 +17,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import LeftArrow from "../../assets/LeftArrow.svg";
 import RightArrow from "../../assets/RightArrow.svg";
+import CarouselLeftnavigation from "../Corousel/CarouselLeftnavigation";
 
 const Section = ({ type, title }) => {
   const [AlbumData, setAlbum] = useState([]);
@@ -34,12 +36,6 @@ const Section = ({ type, title }) => {
     <div className={styles.main}>
       <div className={styles.title}>
         <p>{title} Albums</p>
-        {/* <button
-          className={styles.btnCollapse}
-          onClick={() => setCorouselToggle(!CorouselToggle)}
-        >
-          {!CorouselToggle ? "Show all" : "Collapse"}
-        </button> */}
 
         <button
           className={styles.btnCollapse}
@@ -51,7 +47,7 @@ const Section = ({ type, title }) => {
 
       {AlbumData.length ? (
         <div>
-          <Grid container spacing={4} className={styles.section}>
+          <div container className={styles.section}>
             {CorouselToggle ? (
               AlbumData.map((album) => (
                 <Grid item key={album.id}>
@@ -67,7 +63,7 @@ const Section = ({ type, title }) => {
                 style={{
                   width: "100%",
                   position: "relative",
-                  marginTop: "5rem",
+                  marginTop: "1rem",
                 }}
               >
                 <button
@@ -83,13 +79,15 @@ const Section = ({ type, title }) => {
                 >
                   <img src={LeftArrow} alt="left arrorw navigation" />
                 </button>
+
+                {/* <CarouselLeftnavigation /> */}
                 <button
                   className="prevbtn"
                   style={{
                     position: "absolute",
                     top: "43%",
                     zIndex: "10",
-                    right: "-1%",
+                    right: "2%",
                     backgroundColor: "transparent",
                     border: "none",
                   }}
@@ -99,7 +97,7 @@ const Section = ({ type, title }) => {
 
                 <Swiper
                   // install Swiper modules
-                  modules={[Navigation]}
+                  modules={[Navigation, Controller]}
                   navigation={{
                     nextEl: ".prevbtn",
                     prevEl: ".nextbtn",
@@ -120,7 +118,7 @@ const Section = ({ type, title }) => {
                 </Swiper>
               </div>
             )}
-          </Grid>
+          </div>
         </div>
       ) : (
         <Box>

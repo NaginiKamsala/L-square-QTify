@@ -22,7 +22,7 @@ import CarouselLeftnavigation from "../Corousel/CarouselLeftnavigation";
 const Section = ({ type, title }) => {
   const [AlbumData, setAlbum] = useState([]);
 
-  const [CorouselToggle, setCorouselToggle] = useState(true);
+  const [CorouselToggle, setCorouselToggle] = useState(false);
 
   useEffect(() => {
     setAlbumData(type);

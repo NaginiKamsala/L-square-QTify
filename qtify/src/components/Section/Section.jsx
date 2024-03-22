@@ -67,7 +67,7 @@ const Section = ({ type, title }) => {
                 }}
               >
                 <button
-                  className="nextbtn"
+                  className={`nextbtn${type}`}
                   style={{
                     position: "absolute",
                     top: "43%",
@@ -82,7 +82,7 @@ const Section = ({ type, title }) => {
 
                 {/* <CarouselLeftnavigation /> */}
                 <button
-                  className="prevbtn"
+                  className={`prevbtn${type}`}
                   style={{
                     position: "absolute",
                     top: "43%",
@@ -97,10 +97,10 @@ const Section = ({ type, title }) => {
 
                 <Swiper
                   // install Swiper modules
-                  modules={[Navigation, Controller]}
+                  modules={[Navigation]}
                   navigation={{
-                    nextEl: ".prevbtn",
-                    prevEl: ".nextbtn",
+                    nextEl: `.prevbtn${type}`,
+                    prevEl: `.nextbtn${type}`,
                   }}
                   slidesPerView={8}
                 >

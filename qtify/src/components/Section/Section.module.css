@@ -32,3 +32,14 @@
   flex-wrap: wrap;
   gap: 29px;
 }
+.filters {
+  display: flex;
+  gap: 43px;
+  margin-bottom: 1rem;
+}
+.filterbutton {
+  background-color: var(--color-black);
+  border: transparent;
+  color: var(--color-white);
+  cursor: pointer;
+}

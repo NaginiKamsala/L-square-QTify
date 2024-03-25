@@ -17,32 +17,52 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import LeftArrow from "../../assets/LeftArrow.svg";
 import RightArrow from "../../assets/RightArrow.svg";
-import CarouselLeftnavigation from "../Corousel/CarouselLeftnavigation";
 
 const Section = ({ type, title }) => {
   const [AlbumData, setAlbum] = useState([]);
+  const [isTopNew, setIsTopNew] = useState(true);
 
   const [CorouselToggle, setCorouselToggle] = useState(false);
+
+  const setAlbumData = async (type) => {
+    let albumdata = [];
+    if (type === "top" || type === "new") {
+      albumdata = await fetchbycategory(`/albums/${type}`);
+      setIsTopNew(true);
+    } else {
+      albumdata = await fetchbycategory(`/${type}`);
+      setIsTopNew(false);
+    }
+
+    setAlbum(albumdata);
+  };
 
   useEffect(() => {
     setAlbumData(type);
   }, []);
-  const setAlbumData = async (type) => {
-    const albumdata = await fetchbycategory(`/albums/${type}`);
-    setAlbum(albumdata);
+
+  const handlefilters = (type) => {
+    let songsdata = [...AlbumData];
+    const filteredsongs = songsdata.filter(
+      (album) => album.genre["key"] === type
+    );
+
+    setAlbum(filteredsongs);
   };
 
   return (
     <div className={styles.main}>
       <div className={styles.title}>
-        <p>{title} Albums</p>
+        <p>{title}</p>
 
-        <button
-          className={styles.btnCollapse}
-          onClick={() => setCorouselToggle(!CorouselToggle)}
-        >
-          {!CorouselToggle ? "Show all" : "Collapse"}
-        </button>
+        {isTopNew && (
+          <button
+            className={styles.btnCollapse}
+            onClick={() => setCorouselToggle(!CorouselToggle)}
+          >
+            {!CorouselToggle ? "Show all" : "Collapse"}
+          </button>
+        )}
       </div>
 
       {AlbumData.length ? (
@@ -66,6 +86,45 @@ const Section = ({ type, title }) => {
                   marginTop: "1rem",
                 }}
               >
+                {!isTopNew && (
+                  <div className={styles.filters}>
+                    <button
+                      className={styles.filterbutton}
+                      onClick={() => handlefilters("all")}
+                      name="all"
+                    >
+                      All
+                    </button>
+                    <button
+                      className={styles.filterbutton}
+                      onClick={() => handlefilters("rock")}
+                      name="rock"
+                    >
+                      Rock
+                    </button>
+                    <button
+                      className={styles.filterbutton}
+                      onClick={() => handlefilters("pop")}
+                      name="pop"
+                    >
+                      Pop
+                    </button>
+                    <button
+                      className={styles.filterbutton}
+                      name="jazz"
+                      onClick={() => handlefilters("jazz")}
+                    >
+                      Jazz
+                    </button>
+                    <button
+                      className={styles.filterbutton}
+                      name="blues"
+                      onClick={() => handlefilters("blues")}
+                    >
+                      Blues
+                    </button>
+                  </div>
+                )}
                 <button
                   className={`nextbtn${type}`}
                   style={{
@@ -107,11 +166,21 @@ const Section = ({ type, title }) => {
                   {AlbumData.map((album) => {
                     return (
                       <SwiperSlide>
-                        <Card
-                          imagelink={album.image}
-                          follows={album.follows}
-                          title={album.title}
-                        />
+                        {isTopNew ? (
+                          <Card
+                            imagelink={album.image}
+                            follows={album.follows}
+                            title={album.title}
+                            isTopNew={isTopNew}
+                          />
+                        ) : (
+                          <Card
+                            imagelink={album.image}
+                            likes={album.likes}
+                            title={album.title}
+                            isTopNew={isTopNew}
+                          />
+                        )}
                       </SwiperSlide>
                     );
                   })}

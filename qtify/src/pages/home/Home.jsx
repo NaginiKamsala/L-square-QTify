@@ -9,8 +9,9 @@ function Home() {
       <Navbar />
       <HeroSection />
 
-      <Section type={"top"} title="Top" />
-      <Section type={"new"} title="New" />
+      <Section type={"top"} title="Top Albums" />
+      <Section type={"new"} title="New Albums" />
+      <Section type={"songs"} title={"songs"} />
     </div>
   );
 }

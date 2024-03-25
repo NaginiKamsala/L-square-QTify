@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import styles from "./Section.module.css";
 import fetchbycategory from "../../api/api";
 import { Grid, Box } from "@mui/material";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
 import { CircularProgress } from "@mui/material";
 import Card from "../Card/Card";
-
+import axios from "axios";
 // import Swiper core and required modules
-import { Navigation, Controller } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 // import Swiper JS
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -23,6 +25,19 @@ const Section = ({ type, title }) => {
   const [isTopNew, setIsTopNew] = useState(true);
 
   const [CorouselToggle, setCorouselToggle] = useState(false);
+  const [genres, setGenres] = useState([]);
+  const [value, setValue] = React.useState("one");
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+
+    console.log(newValue);
+    // const filteredsongs = AlbumData.filter(
+    //   (album) => album.genre["key"] === newValue
+    // );
+
+    // setAlbum(filteredsongs);
+  };
 
   const setAlbumData = async (type) => {
     let albumdata = [];
@@ -37,8 +52,15 @@ const Section = ({ type, title }) => {
     setAlbum(albumdata);
   };
 
+  const setgenreData = async () => {
+    const genres = await axios.get("https://qtify-backend-labs.crio.do/genres");
+    console.log(genres);
+    setGenres(genres);
+  };
+
   useEffect(() => {
     setAlbumData(type);
+    setgenreData();
   }, []);
 
   const handlefilters = (type) => {
@@ -88,6 +110,17 @@ const Section = ({ type, title }) => {
               >
                 {!isTopNew && (
                   <div className={styles.filters}>
+                    {/* <Tabs
+                      value={value}
+                      onChange={handleChange}
+                      aria-label="wrapped label tabs example"
+                    >
+                      <Tab value="all" label="All" />
+                      <Tab value="rock" label="Rock" />
+                      <Tab value="pop" label="Pop" />
+                      <Tab value="jazz" label="Jazz" />
+                      <Tab value="blues" label="Blues" />
+                    </Tabs> */}
                     <button
                       className={styles.filterbutton}
                       onClick={() => handlefilters("all")}
